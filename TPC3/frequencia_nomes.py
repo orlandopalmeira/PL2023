@@ -15,7 +15,7 @@ def ano_para_seculo(ano):
 
 file = open('processos.txt') # abre em modo de leitura por omissão
 regex_date = re.compile(r'(\d+)\-\d+\-\d+') # regex para datas
-regex = re.compile(r'(?:(?:[A-Z][a-z]+ )*(?:[A-Z][a-z]+)\.?)') # regex para capturar os nomes; ?: significa que o grupo não deve ser capturado
+regex = re.compile(r'(?:(?:[A-Z][a-z]+ )*(?:[A-Z][a-z]+)\.?)') # regex para capturar os nomes; '?:' significa que o grupo não deve ser capturado
 
 frequencias_p_seculo = {} 
 '''
@@ -43,7 +43,7 @@ frequencias_p_seculo = {
 '''
 
 for line in file:
-    date = regex_date.search(line) # recolhe a dara
+    date = regex_date.search(line) # recolhe a data
     seculo = ano_para_seculo(int(date.group(1))) if date is not None else -1 # calcula o século correspondente
     names = [x for x in regex.findall(line) if x[-1:] != '.' and len(x.split(' ')) > 1] # vai buscar os nomes
     for name in names:
