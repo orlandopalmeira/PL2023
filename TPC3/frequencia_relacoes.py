@@ -10,7 +10,6 @@ file = open('processos.txt')
 text = file.read()
 file.close()
 # Expressão regular para capturar linhas com graus de parentesco (Irmao, filho, etc...)
-#regex_linha_parentesco = re.compile(r'(?:([A-Z][a-z]+)(?: ([A-Z][a-z]+))+(?:,([\w ]+)\.))|(?:(?:([A-Z][a-z]+)(?: ([A-Z][a-z]+))+, *)*(([A-Z][a-z]+)(?: ([A-Z][a-z]+))+)\s+e\s+([A-Z][a-z]+)(?: ([A-Z][a-z]+))+(?:,([\w ]+)\.))')
 regex_linha_parentesco = re.compile(r'(?:([A-Z][a-z]+)(?: ([A-Z][a-z]+))+(?:,([A-Z][a-z]+\s*)*\.))|(?:(?:([A-Z][a-z]+)(?: ([A-Z][a-z]+))+, *)*(([A-Z][a-z]+)(?: ([A-Z][a-z]+))+)\s+e\s+([A-Z][a-z]+)(?: ([A-Z][a-z]+))+(?:,([A-Z][a-z]+\s*)*\.))')
 
 # Expressão regular para captar o grau de parentesco

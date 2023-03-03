@@ -22,8 +22,8 @@
         "Pai": "Antonio Alves Barroso",
         "Mae": "Maria Jose Alvares Barroso",
         "outros": [
-            "Bento Alvares Barroso",
-            "Domingos Jose Alvares Barroso"
+            "Bento Alvares Barroso,Tio Paterno.",
+            "Domingos Jose Alvares Barroso,Tio Materno."
         ]
     },
     {
@@ -33,7 +33,7 @@
         "Pai": "Francisco Jose Oliveira",
         "Mae": "Antonia Rosa Rebelo",
         "outros": [
-            "Jose Antonio Oliveira"
+            "Jose Antonio Oliveira,Irmao."
         ]
     },
     {
@@ -163,8 +163,8 @@
         "Pai": "Jose Joaquim Santos",
         "Mae": "Teresa Jesus",
         "outros": [
-            "Antonio Jose Adao",
-            "Albino Antonio Ribeiro"
+            "Antonio Jose Adao,Tio Materno.",
+            "Albino Antonio Ribeiro,Primo Paterno."
         ]
     }
 ]
