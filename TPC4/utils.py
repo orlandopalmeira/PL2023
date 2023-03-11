@@ -34,11 +34,6 @@ def stringToData(string: str):
     return string
 
 
-# Converte uma string que contém valores separados por vírgulas numa lista
-def stringToList(string: str, flag = True):
-    result = re.split(r'\s*\,\s*', string)
-    return [stringToData(x) for x in result] if flag else result
-
 # Equivalente à span do haskell
 def span(predicate, lista: list, limit = inf):
     l1, l2 = [],[]
