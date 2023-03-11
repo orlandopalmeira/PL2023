@@ -63,4 +63,4 @@ for line in lines[1:]:
 
 file = open(argv[2], 'w')
 json.dump(objects,file, indent=4, ensure_ascii=False)
-file.close
+file.close()
