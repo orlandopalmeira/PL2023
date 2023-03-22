@@ -1,10 +1,11 @@
 import ply.lex as lex
 import sys
 
-tokens = ('ID',
+tokens = ('VAR',
           'INT',
           'FUNCTION',
           'WHILE',
+          'IF',
           'FOR',
           'NUMBER',
           'OPERATOR',
@@ -27,7 +28,9 @@ tokens = ('ID',
           'CLOSEPARRETOS',
           'ONELINECOMMENT',
           'OPENMULTILINECOMMENT',
-          'CLOSEMULTILINECOMMENT')
+          'CLOSEMULTILINECOMMENT',
+          'FUNCNAME',
+          'PROGNAME')
 
 states = (
     ('readingComment','exclusive'),
@@ -42,14 +45,6 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
-def t_readingComment_newline(t):
-    r'\n+'
-    t.lexer.lineno += len(t.value)
-
-def t_notReadingComment_newline(t):
-    r'\n+'
-    t.lexer.lineno += len(t.value)
-
 def t_error(t):
     print(f"Caracter invalido: '{t.value[0]}'")
     return t
@@ -61,6 +56,28 @@ def t_readingComment_error(t):
 def t_notReadingComment_error(t):
     print(f"Caracter invalido: '{t.value[0]}'")
     return t
+
+def t_readingComment_newline(t):
+    r'\n+'
+    t.lexer.lineno += len(t.value)
+
+def t_notReadingComment_newline(t):
+    r'\n+'
+    t.lexer.lineno += len(t.value)
+
+def t_notReadingComment_FUNCNAME(t):
+    r'\w+(?=\(.*\))'
+    return t
+
+def t_readingComment_FUNCNAME(t):
+    r'\w+(?=\(.*\))'
+
+def t_notReadingComment_PROGNAME(t):
+    r'program\s+\w+'
+    return t
+
+def t_readingComment_PROGNAME(t):
+    r'program\s+\w+'
 
 def t_notReadingComment_ONELINECOMMENT(t):
     r'\/\/.*'
@@ -77,7 +94,7 @@ def t_readingComment_OPENMULTILINECOMMENT(t):
 
 def t_notReadingComment_CLOSEMULTILINECOMMENT(t):
     r'\*\/'
-    raise RuntimeError("'\\*' Só pode finalizar comentários!")
+    raise RuntimeError("'*/' Só pode finalizar comentários!")
 
 def t_readingComment_CLOSEMULTILINECOMMENT(t):
     r'\*\/'
@@ -89,6 +106,13 @@ def t_notReadingComment_INT(t):
 
 def t_readingComment_INT(t):
     r'int'
+
+def t_notReadingComment_IF(t):
+    r'if'
+    return t
+
+def t_readingComment_IF(t):
+    r'if'
 
 def t_notReadingComment_FUNCTION(t):
     r'function'
@@ -239,18 +263,18 @@ def t_notReadingComment_OPENPARRETOS(t):
 def t_readingComment_OPENPARRETOS(t):
     r'\['
 
-def t_readingComment_CLOSEPARRETOS(t):
+def t_notReadingComment_CLOSEPARRETOS(t):
     r'\]'
     return t
 
-def t_notReadingComment_CLOSEPARRETOS(t):
+def t_readingComment_CLOSEPARRETOS(t):
     r'\]'
 
-def t_notReadingComment_ID(t):
+def t_notReadingComment_VAR(t):
     r'\w+'
     return t
 
-def t_readingComment_ID(t):
+def t_readingComment_VAR(t):
     r'\w+'
 
 
